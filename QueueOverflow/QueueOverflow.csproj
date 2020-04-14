@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{09BFBE9C-1FE3-4630-B755-766E7EA96F4C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QueueOverflow</RootNamespace>
+    <AssemblyName>QueueOverflow</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BD\Creacion De Tablas.sql" />
+    <Content Include="BD\Procedimientos Almacenados.sql" />
+    <Content Include="css\bootstrap-datetimepicker.min.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\jquery-ui.min.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\normalize.css" />
+    <Content Include="css\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\logo.png" />
+    <Content Include="js\bootstrap-datetimepicker.min.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-2.0.3.min.js" />
+    <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\modernizr-2.6.2.min.js" />
+    <Content Include="js\moment.min.js" />
+    <Content Include="js\onTime.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\CategoriaBLL.cs" />
+    <Compile Include="BLL\ComentarioBLL.cs" />
+    <Compile Include="BLL\PreguntaBLL.cs" />
+    <Compile Include="BLL\PreguntaCategoriaBLL.cs" />
+    <Compile Include="BLL\RespuestaBLL.cs" />
+    <Compile Include="BLL\UsuarioBLL.cs" />
+    <Compile Include="BLL\VotoBLL.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\PreguntaController.cs" />
+    <Compile Include="Controllers\RespuestaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="DAL\CategoriaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CategoriaDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ComentarioDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComentarioDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PreguntaCategoriaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreguntaCategoriaDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PreguntaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreguntaDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\RespuestaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RespuestaDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UsuarioDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuarioDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\VotoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VotoDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Comentario.cs" />
+    <Compile Include="Models\Pregunta.cs" />
+    <Compile Include="Models\PreguntaCategoria.cs" />
+    <Compile Include="Models\Respuesta.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Voto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="DAL\UsuarioDS.xsc">
+      <DependentUpon>UsuarioDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="DAL\PreguntaDS.xsc">
+      <DependentUpon>PreguntaDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="DAL\CategoriaDS.xsc">
+      <DependentUpon>CategoriaDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\CategoriaDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CategoriaDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\CategoriaDS.xss">
+      <DependentUpon>CategoriaDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="DAL\PreguntaCategoriaDS.xsc">
+      <DependentUpon>PreguntaCategoriaDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="DAL\ComentarioDS.xsc">
+      <DependentUpon>ComentarioDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\ComentarioDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ComentarioDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\ComentarioDS.xss">
+      <DependentUpon>ComentarioDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\PreguntaCategoriaDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PreguntaCategoriaDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\PreguntaCategoriaDS.xss">
+      <DependentUpon>PreguntaCategoriaDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\PreguntaDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PreguntaDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\PreguntaDS.xss">
+      <DependentUpon>PreguntaDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="DAL\RespuestaDS.xsc">
+      <DependentUpon>RespuestaDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\RespuestaDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RespuestaDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\RespuestaDS.xss">
+      <DependentUpon>RespuestaDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\UsuarioDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UsuarioDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\UsuarioDS.xss">
+      <DependentUpon>UsuarioDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="DAL\VotoDS.xsc">
+      <DependentUpon>VotoDS.xsd</DependentUpon>
+    </Content>
+    <None Include="DAL\VotoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VotoDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DAL\VotoDS.xss">
+      <DependentUpon>VotoDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Views\_LayoutGeneral.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Pregunta\Index.cshtml" />
+    <Content Include="Views\Pregunta\Create.cshtml" />
+    <Content Include="Views\Pregunta\Details.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Usuario\All.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Single.cshtml" />
+    <Content Include="Views\Pregunta\Edit.cshtml" />
+    <Content Include="Views\Respuesta\Edit.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58132</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56670/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

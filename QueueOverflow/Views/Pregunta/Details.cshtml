@@ -1,0 +1,509 @@
+﻿@model QueueOverflow.Models.Pregunta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+@{
+    if (ViewBag.idUsuario != null)
+    {
+        <div class="col-md-12">
+            <a href="/Usuario/Single/@ViewBag.idUsuario" class="btn btn-primary btn-lg btn-block">@ViewBag.NombreUsuario</a>
+        </div>
+    }
+}
+@{
+    if (this.Model.intEstado == 1)
+    {
+        <div class="question-box">
+            @Html.HiddenFor(model => model.idPregunta)
+            <div class="question-title col-md-9 accepted">
+                <h2>@Html.DisplayFor(model => model.txtTitulo)</h2>
+            </div>
+            <div class="acciones col-md-3">
+                <a href="javascript:votar(1,  @Html.DisplayFor(model => model.idPregunta), 0);" class="btn btn-info col-md-3"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                <input id="votosPregunta" type="text" class="col-md-3 voto" disabled="disabled"/>
+                <a href="javascript:votar(0,  @Html.DisplayFor(model => model.idPregunta), 0);" class="btn btn-info col-md-3"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            </div>
+            <div class="question-content col-md-12">
+                <pre>
+            @Html.DisplayFor(model => model.txtContenido)
+        </pre>
+            </div>
+            <div class="question-date">
+                <small class="date">Creado el: <span class="label-warning">@Html.DisplayFor(model => model.dateFechaCreacion)</span></small>
+            </div>
+            <div class="question-date">
+                <small class="date">Editado el: <span class="label-warning">@Html.DisplayFor(model => model.dateFechaModificacion)</span></small>
+            </div>
+            <div class="question-categories">
+                @foreach (var categoria in ViewBag.listaCategorias)
+                {
+                    <span class="category label label-info pull-left">
+                        @categoria.txtNombreCategoria
+                    </span>
+                }
+                <div class="clearfix"></div>
+            </div>
+            <div class="question-actions">
+                <div class="addComent">
+                    <div class="col-md-10">
+                        <textarea rows="5" class="form-control" id="Comentario" placeholder="Inserte su Comentario..."></textarea>
+                    </div>
+                    <a href="javascript:insertarComentario();" class="btn btn-info col-md-2">Comentar</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="addComent">
+                    <div class="col-md-10">
+                        <textarea rows="5" class="form-control" id="Respuesta" placeholder="Inserte su Respuesta..."></textarea>
+                    </div>
+                    <a href="javascript:insertarRespuesta();" class="btn btn-info col-md-2">Responder</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="question-coments">
+                @foreach (var comPregunta in ViewBag.listaComentPreguntas)
+                {
+                    <div class="coment" id="@comPregunta.idComentario">
+                        <div class="coment-content">
+                            <small>
+                                @comPregunta.txtContenido
+                            </small>
+                        </div>
+                        <div class="coment-date">
+                            @{
+                    QueueOverflow.Models.Usuario aux = QueueOverflow.BLL.UsuarioBLL.getUserByID(@comPregunta.idUsuario);
+                    string name = aux.txtNombreUsuario;
+                            }
+                            <small class="date">@comPregunta.dateFechaCreacion - Comentado por: <span class="name">@name</span></small>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="question-box">
+            @Html.HiddenFor(model => model.idPregunta)
+            <div class="question-title col-md-9">
+                <h2>@Html.DisplayFor(model => model.txtTitulo)</h2>
+            </div>
+            <div class="acciones col-md-3">
+                <a href="javascript:votar(1,  @Html.DisplayFor(model => model.idPregunta), 0);" class="btn btn-info col-md-3"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                <input id="votosPregunta" type="text" class="col-md-3 voto" disabled="disabled"/>
+                <a href="javascript:votar(0,  @Html.DisplayFor(model => model.idPregunta), 0);" class="btn btn-info col-md-3"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            </div>
+            <div class="question-content col-md-12">
+                <pre>
+            @Html.DisplayFor(model => model.txtContenido)
+        </pre>
+            </div>
+            <div class="question-date">
+                <small class="date">Creado el: <span class="label-warning">@Html.DisplayFor(model => model.dateFechaCreacion)</span></small>
+            </div>
+            <div class="question-date">
+                <small class="date">Editado el: <span class="label-warning">@Html.DisplayFor(model => model.dateFechaModificacion)</span></small>
+            </div>
+            <div class="question-categories">
+                @foreach (var categoria in ViewBag.listaCategorias)
+                {
+                    <span class="category label label-info pull-left">
+                        @categoria.txtNombreCategoria
+                    </span>
+                }
+                <div class="clearfix"></div>
+            </div>
+            <div class="question-actions">
+                <div class="addComent">
+                    <div class="col-md-10">
+                        <textarea rows="5" class="form-control" id="Comentario" placeholder="Inserte su Comentario..."></textarea>
+                    </div>
+                    <a href="javascript:insertarComentario();" class="btn btn-info col-md-2">Comentar</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="addComent">
+                    <div class="col-md-10">
+                        <textarea rows="5" class="form-control" id="Respuesta" placeholder="Inserte su Respuesta..."></textarea>
+                    </div>
+                    <a href="javascript:insertarRespuesta();" class="btn btn-info col-md-2">Responder</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="question-coments">
+                @foreach (var comPregunta in ViewBag.listaComentPreguntas)
+                {
+                    <div class="coment" id="@comPregunta.idComentario">
+                        <div class="coment-content">
+                            <small>
+                                @comPregunta.txtContenido
+                            </small>
+                        </div>
+                        <div class="coment-date">
+                            @{
+                    QueueOverflow.Models.Usuario aux = QueueOverflow.BLL.UsuarioBLL.getUserByID(@comPregunta.idUsuario);
+                    string name = aux.txtNombreUsuario;
+                            }
+                            <small class="date">@comPregunta.dateFechaCreacion - Comentado por: <span class="name">@name</span></small>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+
+<div class="answers-box">
+    @foreach (var respuesta in ViewBag.listaRespuestas)
+    {
+        if (respuesta.intEstado == 1)
+        {
+            <div class="answer" id="@respuesta.idRespuesta">
+                <div class="answer-content">
+                    <pre class="accepted">
+                    @respuesta.txtContenido
+                </pre>
+                </div>
+                <div class="answer-date">
+                    @{
+            QueueOverflow.Models.Usuario aux = QueueOverflow.BLL.UsuarioBLL.getUserByID(@respuesta.idUsuario);
+            string name = aux.txtNombreUsuario;
+                    }
+                    <small class="date">@respuesta.dateFechaCreacion - Respondido por: <span class="name">@name</span></small>
+                </div>
+                <div class="marcarPregunta">
+                    @{
+            if (this.Model.intEstado == 1)
+            {
+                <a href="#" class="btn btn-danger col-md-2">Marcar Correcta</a>
+            }
+            else
+            {
+                <a href="javascript:marcarRespuesta(@respuesta.idRespuesta);" class="btn btn-success col-md-2">Marcar Correcta</a>
+            }
+                    }
+                    <a href="javascript:votar(1, @respuesta.idRespuesta, 1);" class="btn btn-info col-md-1"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                    <input id="votosRespuesta_@respuesta.idRespuesta" type="text" class="col-md-1 voto" disabled="disabled"/>
+                    <a href="javascript:votar(0, @respuesta.idRespuesta, 1);" class="btn btn-info col-md-1"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="answer-coments">
+                    @foreach (var comRespuesta in ViewBag.listaComentRespuestas)
+                    {
+                        if (@respuesta.idRespuesta == @comRespuesta.idRegistro)
+                        {
+                            <div class="coment active" id="@comRespuesta.idComentario">
+                                <div class="coment-content">
+                                    <small>
+                                        @comRespuesta.txtContenido
+                                    </small>
+                                </div>
+                                <div class="coment-date">
+                                    @{
+                            QueueOverflow.Models.Usuario aux1 = QueueOverflow.BLL.UsuarioBLL.getUserByID(@comRespuesta.idUsuario);
+                            string name1 = aux.txtNombreUsuario;
+                                    }
+                                    <small class="date">@comRespuesta.dateFechaCreacion - Comentado por: <span class="name">@name1</span></small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="question-actions">
+                    <div class="addComent">
+                        <div class="col-md-10">
+                            <textarea rows="5" class="form-control" id="Comentario_@respuesta.idRespuesta" placeholder="Inserte su Comentario..."></textarea>
+                        </div>
+                        <a href="javascript:insertarComentarioResp(@respuesta.idRespuesta);" class="btn btn-info col-md-2">Comentar</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+        else
+        {
+            <div class="answer" id="@respuesta.idRespuesta">
+                <div class="answer-content">
+                    <pre>
+                    @respuesta.txtContenido
+                </pre>
+                </div>
+                <div class="answer-date">
+                    @{
+            QueueOverflow.Models.Usuario aux = QueueOverflow.BLL.UsuarioBLL.getUserByID(@respuesta.idUsuario);
+            string name = aux.txtNombreUsuario;
+                    }
+                    <small class="date">@respuesta.dateFechaCreacion - Respondido por: <span class="name">@name</span></small>
+                </div>
+                <div class="marcarPregunta">
+                    @{
+            if (this.Model.intEstado == 1)
+            {
+                <a href="#" class="btn btn-danger col-md-2">Marcar Correcta</a>
+            }
+            else
+            {
+                <a href="javascript:marcarRespuesta(@respuesta.idRespuesta);" class="btn btn-success col-md-2">Marcar Correcta</a>
+            }
+                    }
+                    <a href="javascript:votar(1, @respuesta.idRespuesta, 1);" class="btn btn-info col-md-1"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                    <input id="votosRespuesta_@respuesta.idRespuesta" type="text" class="col-md-1 voto" disabled="disabled" />
+                    <a href="javascript:votar(0, @respuesta.idRespuesta, 1);" class="btn btn-info col-md-1"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="answer-coments">
+                    @foreach (var comRespuesta in ViewBag.listaComentRespuestas)
+                    {
+                        if (@respuesta.idRespuesta == @comRespuesta.idRegistro)
+                        {
+                            <div class="coment active" id="@comRespuesta.idComentario">
+                                <div class="coment-content">
+                                    <small>
+                                        @comRespuesta.txtContenido
+                                    </small>
+                                </div>
+                                <div class="coment-date">
+                                    @{
+                            QueueOverflow.Models.Usuario aux1 = QueueOverflow.BLL.UsuarioBLL.getUserByID(@comRespuesta.idUsuario);
+                            string name1 = aux.txtNombreUsuario;
+                                    }
+                                    <small class="date">@comRespuesta.dateFechaCreacion - Comentado por: <span class="name">@name1</span></small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="question-actions">
+                    <div class="addComent">
+                        <div class="col-md-10">
+                            <textarea rows="5" class="form-control" id="Comentario_@respuesta.idRespuesta" placeholder="Inserte su Comentario..."></textarea>
+                        </div>
+                        <a href="javascript:insertarComentarioResp(@respuesta.idRespuesta);" class="btn btn-info col-md-2">Comentar</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+
+    }
+</div>
+<script type="text/javascript">
+    function insertarComentario() {
+        var coment = $("#Comentario").val();
+        var id = $("#idPregunta").val();
+        var url = "/Pregunta/insertComentario/";
+        var fullDate = new Date()
+        console.log(fullDate);
+        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+        var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+        $.ajax({
+            url: url,
+            data: { comentario: coment, idPregunta: id },
+            type: "POST",
+            cache: false,
+            success: function (data) {
+                if (data == 0) {
+                    sweetAlert("Oops...", "Debes loguearte para comentar", "error");
+                } else {
+                    var html = '<div class="coment" id="' + data + '">' +
+                                    '<div class="coment-content">' +
+                                        '<small>' + coment + '</small>' +
+                                    '</div>' +
+                                '<div class="coment-date">' +
+                                    '<small class="date">' + currentDate + ' - Comentado por: <span class="name">ActualUser</span></small>' +
+                                '</div>' +
+                                '<div class="clearfix"></div>' +
+                                '</div>';
+                    $(".question-coments").append(html);
+                    $("#Comentario").val("");
+                    swal("Felicidades!", "El comentario se registro correctamente", "success");
+                }
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+    function insertarRespuesta() {
+        var resp = $("#Respuesta").val();
+        var id = $("#idPregunta").val();
+        var url = "/Pregunta/insertRespuesta/";
+        var fullDate = new Date()
+        console.log(fullDate);
+        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+        var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+        $.ajax({
+            url: url,
+            data: { respuesta: resp, idPregunta: id },
+            type: "POST",
+            cache: false,
+            success: function (data) {
+                if (data == -1) {
+                    sweetAlert("Oops...", "Ya has colocado una respuesta para esta pregunta, puedes comentar si lo deseas", "error");
+                }
+                if (data == 0) {
+                    sweetAlert("Oops...", "Debes loguearte para responder", "error");
+                } else {
+                    var html = '<div class="answer" id="' + data + '">' +
+                                    '<div class="answer-content">' +
+                                         '<pre>' + resp + '</pre>' +
+                                    '</div>' +
+                                    '<div class="answer-date">' +
+                                        '<small class="date">' + currentDate + ' - Respondido por: <span class="name">CurrentUser</span></small>' +
+                                    '</div>' +
+                                    '<div class="clearfix"></div>' +
+                                    '<div class="question-actions">' +
+                                        '<div class="addComent">' +
+                                            '<div class="col-md-10">' +
+                                                '<textarea rows="5" class="form-control" id="Comentario_' + data + '" placeholder="Inserte su Comentario..."></textarea>' +
+                                            '</div>' +
+                                            '<a href="javascript:insertarComentarioResp(' + data + ');" class="btn btn-info col-md-2">Comentar</a>' +
+                                            '<div class="clearfix"></div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="clearfix"></div>' +
+                                '</div>';
+                    $(".answers-box").append(html);
+                    $("#Respuesta").val("");
+                    swal("Felicidades!", "La respuesta se registro correctamente", "success");
+                }
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+    function insertarComentarioResp(id) {
+        var coment = $("#Comentario_" + id).val();
+        var url = "/Pregunta/insertComentarioRespuesta/";
+        var fullDate = new Date()
+        console.log(fullDate);
+        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+        var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+        $.ajax({
+            url: url,
+            data: { comentario: coment, idRespuesta: id },
+            type: "POST",
+            cache: false,
+            success: function (data) {
+                if (data == 0) {
+                    sweetAlert("Oops...", "Debes loguearte para comentar", "error");
+                } else {
+                    var html = '<div class="coment" id="' + data + '">' +
+                                    '<div class="coment-content">' +
+                                        '<small>' + coment + '</small>' +
+                                    '</div>' +
+                                '<div class="coment-date">' +
+                                    '<small class="date">' + currentDate + ' - Comentado por: <span class="name">ActualUser</span></small>' +
+                                '</div>' +
+                                '<div class="clearfix"></div>' +
+                                '</div>';
+                    $(".answer-coments").append(html);
+                    $("#Comentario_" + id).val("");
+                    swal("Felicidades!", "El comentario se registro correctamente", "success");
+                }
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+    function marcarRespuesta(id) {
+        var url = "/Pregunta/marcarRespuesta/";
+        $.ajax({
+            url: url,
+            data: { idRespuesta: id },
+            type: "POST",
+            cache: false,
+            success: function (data) {
+                if (data == -1) {
+                    sweetAlert("Oops...", "Esta pregunta ya tiene una respuesta marcada", "error");
+                    return;
+                } else {
+                    if (data == 2) {
+                        sweetAlert("Oops...", "No puedes marcar una respuesta como correcta, si la pregunta no te pertenece", "error");
+                    } else {
+                        if (data == 0) {
+                            sweetAlert("Oops...", "Debes loguearte para Marcar", "error");
+                        } else {
+                            swal("Felicidades!", "La respuesta se ha marcado como correcta", "success");
+                            $(".answer #" + id).css("background", "#39833B");
+                        }
+                    }
+                }
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+    function votar(state, register, type) {
+        var url = "/Pregunta/insertVote/";
+        $.ajax({
+            url: url,
+            data: { estado: state, registro: register, tipo: type },
+            type: "POST",
+            cache: false,
+            success: function (data) {
+                if (data == -1) {
+                    sweetAlert("Oops...", "Ya has votado por este item", "error");
+                    return;
+                }
+                if (data == 0) {
+                    sweetAlert("Oops...", "Debes loguearte para votar", "error");
+                } else {
+                    swal("Felicidades!", "Tu voto se registró correctamente", "success");
+                    sumarVotos();
+                }
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+    function sumarVotos() {
+        $(".voto").each(function () {
+            var idNombre = $(this).attr("id");
+            var url = "/Pregunta/sumarVotos/";
+            if (idNombre == "votosPregunta") {
+                var id = $("#idPregunta").val();
+                $.ajax({
+                    url: url,
+                    data: { idRegistro: id, tipo: 0 },
+                    type: "POST",
+                    cache: false,
+                    success: function (data) {
+                        $("#votosPregunta").val(data);
+                    },
+                    error: function (reponse) {
+                        alert("error : " + reponse);
+                    }
+                });
+            } else {
+                var id = idNombre.replace("votosRespuesta_", "");
+                $.ajax({
+                    url: url,
+                    data: { idRegistro: id, tipo: 1 },
+                    type: "POST",
+                    cache: false,
+                    success: function (data) {
+                        $("#votosRespuesta_" + id).val(data);
+                    },
+                    error: function (reponse) {
+                        alert("error : " + reponse);
+                    }
+                });
+            }
+        });
+    }
+    $(document).ready(function () {
+        sumarVotos();
+    });
+</script>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<QueueOverflow.Models.Pregunta>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<h2>Preguntas</h2>
+
+@{
+    if (ViewBag.idUsuario != null)
+    {
+        <div>
+            <a href="/Usuario/Single/@ViewBag.idUsuario" class="btn btn-primary btn-lg btn-block">@ViewBag.NombreUsuario</a>
+        </div>
+    }
+}
+<p>
+    @Html.ActionLink("Hacer Pregunta", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idPregunta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtTitulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtContenido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateFechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateFechaModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intEstado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPregunta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.txtTitulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.txtContenido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateFechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateFechaModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.intEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idUsuario)
+            </td>
+            <td>
+                @Html.ActionLink("Ver Pregunta", "Details", new { id = item.idPregunta })
+            </td>
+        </tr>
+    }
+
+</table>

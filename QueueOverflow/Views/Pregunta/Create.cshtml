@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<h2>Create</h2>
+@{
+    if (ViewBag.idUsuario != null)
+    {
+        <div>
+            <a href="/Usuario/Single/@ViewBag.idUsuario" class="btn btn-primary btn-lg btn-block">@ViewBag.NombreUsuario</a>
+        </div>
+    }
+}
+@model Tuple<QueueOverflow.Models.Pregunta, QueueOverflow.Models.Categoria>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Pregunta</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Item1.idPregunta)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item1.txtTitulo, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Item1.txtTitulo)
+                @Html.ValidationMessageFor(model => model.Item1.txtTitulo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item1.txtContenido, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.Item1.txtContenido, new { @style="width: 100%"})
+                @Html.ValidationMessageFor(model => model.Item1.txtContenido)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item2.txtNombreCategoria, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Item2.txtNombreCategoria, new { @placeholder="Ingrese las categorías separadas por coma (,)" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Item1.dateFechaCreacion)
+        @Html.HiddenFor(model => model.Item1.dateFechaModificacion)
+        @Html.HiddenFor(model => model.Item1.intEstado)
+        @Html.HiddenFor(model => model.Item1.idUsuario)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-info pull-right" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a Preguntas", "Index", new {@class="btn btn-default" })
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QueueOverflow.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<h2>Categor&iacute;as</h2>
+
+@foreach (var item in Model)
+{
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#@Html.DisplayFor(modelItem => item.idCategoria)" aria-expanded="true" aria-controls="collapseOne">
+                        @Html.DisplayFor(modelItem => item.txtNombreCategoria)
+                    </a>
+                </h4>
+            </div>
+            <div id="@Html.DisplayFor(modelItem => item.idCategoria)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div id="@Html.DisplayFor(modelItem => item.idCategoria)content" class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        $(".panel-collapse").each(function () {
+            var dID = $(this).attr("id");
+            var url = "/Categoria/GetQuestionsByIDCategory/";
+            $.ajax({
+                url: url,
+                data: { idCat: dID },
+                type: "POST",
+                cache: false,
+                success: function (data) {
+                    var html = '';
+                    for (var x = 0; x < data.length; x++) {
+                        html += '<a href=/Pregunta/Details/' + data[x].idPregunta + ' class="btn btn-primary btn-lg btn-block">' + data[x].txtTitulo + "</a>";
+                    }
+                    $("#" + dID + "content").html(html).show();
+                },
+                error: function (reponse) {
+                    alert("error : " + reponse);
+                }
+            });
+        });
+    });
+
+</script>

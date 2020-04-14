@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/normalize.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/sweet-alert.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="~/js/modernizr-2.6.2.min.js" type="text/javascript"></script>
+    <script src="~/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/js/moment.min.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/js/sweet-alert.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div id="wrap-menu">
+                <header class="navbar  bs-docs-nav hidden-xs" role="banner">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand">
+                            <img class="img-responsive" src="~/images/logo.png" alt="EFC" />
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <nav id="large" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+                        <ul class="nav nav-pills">
+                            <li><a href="/Pregunta">Preguntas</a></li>
+                            <li><a href="/Categoria">Categor&iacute;as</a></li>
+                            @{
+                                if (Session["idUser"] != null)
+                                {
+                                    <li><a href="/Pregunta/Create">Hacer Pregunta</a></li>
+                                }
+                            }
+                            <li><a href="/Usuario/All">Usuarios</a></li>
+                            <li><a href="/Usuario">Entrar/Registrarse</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <header class="navbar  bs-docs-nav visible-xs" role="banner">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand">
+                            <img class="img-responsive" src="~/images/logo.png" alt="EFC" />
+                        </a>
+                    </div>
+                    <nav id="mobile" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+                        <ul class="nav">
+                            <li><a href="/Pregunta">Preguntas</a></li>
+                            <li><a href="/Categoria">Categor&iacute;as</a></li>
+                            @{
+                                if (Session["idUser"] != null)
+                                {
+                                    <li><a href="/Pregunta/Create">Hacer Pregunta</a></li>
+                                }
+                            }
+                            <li><a href="/Usuario/All">Usuarios</a></li>
+                            <li><a href="/Usuario">Entrar/Registrarse</a></li>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+    </div>
+    <div class="container main-content">
+        @RenderBody()
+        <div class="clearfix"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<QueueOverflow.Models.Usuario>
+
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<h2>All</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtNombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtCorreo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtNombreReal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtNombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtCorreo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtNombreReal)
+        </td>
+        <td>
+            @Html.ActionLink("Ver Usuario", "Single", new { id=item.idUsuario })
+        </td>
+    </tr>
+}
+
+</table>

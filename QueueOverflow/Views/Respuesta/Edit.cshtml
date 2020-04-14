@@ -1,0 +1,72 @@
+﻿@model QueueOverflow.Models.Respuesta
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Respuesta</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.HiddenFor(model => model.idRespuesta)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.txtContenido, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.txtContenido, new { @style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.txtContenido)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.intEstado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.dateFechaCreacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.dateFechaModificacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.idPregunta)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.idUsuario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-info pull-right"  />
+            </div>
+        </div>
+    </div>
+    @Html.ActionLink("Eliminar Respuesta", "Delete", new { id = @Html.DisplayFor(model => model.idRespuesta) })
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,73 @@
+﻿@model QueueOverflow.Models.Usuario
+
+@{
+    ViewBag.Title = "Single";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<div>
+    <h4>Usuario</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtNombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtNombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtCorreo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtCorreo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.txtNombreReal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtNombreReal)
+        </dd>
+    </dl>
+    <div class="clearfix"></div>
+</div>
+<div class="preguntas">
+    <h2>Preguntas</h2>
+    @foreach (var preguntas in ViewBag.listaPreguntas)
+    {
+        if (Convert.ToInt32(Session["idUser"]) == preguntas.idUsuario)
+        {
+            <a href="/Pregunta/Edit/@preguntas.idPregunta" class="btn btn-primary btn-lg btn-block">@preguntas.txtTitulo</a>
+        }
+        else
+        {
+            <a href="/Pregunta/Details/@preguntas.idPregunta" class="btn btn-primary btn-lg btn-block">@preguntas.txtTitulo</a>
+        }
+        
+    }
+</div>
+<div class="respuestas">
+    <h2>Respuestas</h2>
+    @foreach (var respuestas in ViewBag.listaRespuestas)
+    {
+        if (Convert.ToInt32(Session["idUser"]) == respuestas.idUsuario)
+        {
+            <a href="/Respuesta/Edit/@respuestas.idRespuesta" class="btn btn-primary btn-lg btn-block">@respuestas.txtContenido</a>
+        }
+        else
+        {
+            <a href="/Pregunta/Details/@respuestas.idPregunta" class="btn btn-primary btn-lg btn-block">@respuestas.txtContenido</a>
+        }
+
+    }
+</div>

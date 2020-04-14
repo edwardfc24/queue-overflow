@@ -1,0 +1,84 @@
+﻿@model QueueOverflow.Models.Pregunta
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_LayoutGeneral.cshtml";
+}
+
+<h2>Edit</h2>
+@{
+    if (ViewBag.idUsuario != null)
+    {
+        <div>
+            <a href="/Usuario/Single/@ViewBag.idUsuario" class="btn btn-primary btn-lg btn-block">@ViewBag.NombreUsuario</a>
+        </div>
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Pregunta</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.idPregunta, new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(model => model.idPregunta)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.txtTitulo, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.txtTitulo)
+                @Html.ValidationMessageFor(model => model.txtTitulo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.txtContenido, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.txtContenido, new { @style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.txtContenido)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.dateFechaCreacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.dateFechaModificacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.intEstado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.idUsuario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Eliminar Pregunta", "Delete", new { id = @Html.DisplayFor(model => model.idPregunta) })
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

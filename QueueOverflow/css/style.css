@@ -1,0 +1,179 @@
+
+/* Header Style */
+header .navbar-toggle .icon-bar {
+    background: #FFFFFF;
+}
+
+.header {
+    background: #002740;
+}
+
+.navbar-brand {
+    height: 80px;
+}
+
+.col-md-8 > input {
+    width: 100%;
+}
+/* Menu Desktop Style */
+#large {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    float: right;
+}
+
+    #large li a {
+        color: #FFFFFF !important;
+        background: #009BFF;
+        text-transform: uppercase;
+    }
+
+        #large li a:hover {
+            color: #009BFF !important;
+            background: #FFFFFF;
+        }
+
+    #large li ul li a {
+        color: #009BFF !important;
+        background: #FFFFFF;
+        padding: 10px 15px;
+    }
+
+        #large li ul li a:hover {
+            color: #FFFFFF !important;
+            background: #009BFF;
+        }
+
+/* Menu Mobile Style */
+#mobile {
+    margin-bottom: 20px;
+}
+
+    #mobile li a {
+        color: #FFFFFF !important;
+        background: #009BFF;
+        text-align: center;
+    }
+
+        #mobile li a:hover {
+            color: #FFFFFF !important;
+            background: #009BFF;
+        }
+
+    #mobile ul li ul {
+        padding: 0;
+    }
+
+        #mobile ul li ul li {
+            display: block;
+            padding-bottom: 0;
+        }
+
+            #mobile ul li ul li a {
+                color: #009BFF !important;
+                background: #FFFFFF;
+                display: block;
+                text-decoration: none;
+                padding: 10px 15px;
+                position: relative;
+                letter-spacing: 1px;
+            }
+
+                #mobile ul li ul li a:hover {
+                    background: #FFFFFF;
+                    color: #009BFF !important;
+                    display: block;
+                }
+/* Menu General Style */
+.navbar-header button {
+    background: #3F569D;
+    margin-top: 28px;
+}
+
+#main-menu {
+    border-bottom: none;
+}
+
+    #main-menu li {
+    }
+
+        #main-menu li a {
+            border-top: 2px solid #3F569D;
+            border-bottom: 2px solid #3F569D;
+        }
+
+.dropdown-menu {
+    border: none;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+    .dropdown-menu li a {
+        margin: 0 0 !important;
+        border-bottom: none !important;
+        border-top: none !important;
+    }
+
+/* Content Style */
+.main-content {
+    box-shadow: 4px 1px 8px 0;
+    padding-top: 25px;
+    min-height: 300px;
+}
+
+.category {
+    margin-right: 5px;
+}
+
+.answers-box {
+    border: 1px solid #C4C4C4;
+    margin: 10px 0;
+    padding: 25px;
+}
+
+.answer {
+    border-bottom: 1px solid #c4c4c4;
+}
+
+    .answer .answer-content, .coment .coment-content, .addComent {
+        margin: 10px 0;
+    }
+
+    .answer .answer-date, .question-box .question-date, .coment .coment-date {
+        display: block;
+        float: right;
+    }
+
+.coment {
+    margin: 10px 0;
+    padding: 0 10px;
+    border-bottom: 1px dotted #C4C4C4;
+    border-top: 1px dotted #C4C4C4;
+}
+
+.voto {
+    border: 1px dotted;
+    height: 34px;
+}
+
+.question-categories {
+    margin-bottom: 10px;
+    margin-top: -18px;
+}
+
+.acciones {
+    margin-top: 15px;
+}
+
+.accepted {
+    background: rgba(68,157,68,0.5);
+}
+/* Responsive Fixes */
+@media (min-width: 740px) and (max-width: 1000px) {
+    #large li a {
+        padding: 7px 1px !important;
+    }
+}
+
+@media (max-width: 740px) {
+}
